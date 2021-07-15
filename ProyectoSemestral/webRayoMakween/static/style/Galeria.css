@@ -1,0 +1,14 @@
+#Galeria{
+    padding: 15px;
+    border-radius: 20px;
+    text-align: center;
+    flex-wrap: wrap;
+    
+}
+#Galeria img{
+    border:solid 7px rgb(255, 230, 0);
+}
+
+.Categoria{
+   float: right;
+}

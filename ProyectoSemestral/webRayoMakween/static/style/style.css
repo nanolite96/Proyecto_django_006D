@@ -1,0 +1,85 @@
+@import url(menu.css);
+@import url(stylotrabajos.css);
+@import url(Galeria.css);
+
+
+
+.cabezon{
+    width: 100%;
+    height: 90px;
+    background-color: rgb(92, 91, 90);
+    color: rgb(0, 0, 0);
+    top: 0;
+    left:0;
+    position: fixed;
+    z-index: 100;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 12px;
+    color: white;
+    padding-bottom: 50px;
+
+}
+.img1{
+    float:right;
+    width: 36%;
+    text-align: end;
+    
+    
+    
+    
+}
+.cabezon h1{
+    margin: 0px;   
+}
+.cabezon nav a{
+    text-decoration: none;
+    color:rgb(255, 251, 251);
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    
+}
+#carouselExampleIndicators{
+    width: 70%;
+}
+.subtitulo{
+    margin: 2px;
+
+
+}
+footer .contenedor{
+    margin-top: 50px;
+    border-bottom: solid 10px ;
+}
+footer{
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    text-align: center;
+    font-size: 15px;
+    height: 100px;
+    background: rgb(0, 0, 0);
+    color: white;
+
+}
+.titulo {
+    text-align: end;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+.fondo{
+    background-color: rgb(184, 182, 182);
+}
+.disco{
+font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+.pintor{
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+.aceite{
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+.buscador{
+    float: left;
+
+}
+
+.formula1{
+    text-align: center;
+}

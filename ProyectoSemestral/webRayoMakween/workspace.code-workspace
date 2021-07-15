@@ -1,0 +1,17 @@
+{
+	"folders": [
+		{
+			"path": "..\\..\\..\\..\\Proyecto_django"
+		},
+		{
+			"path": "..\\..\\.vscode"
+		},
+		{
+			"path": "..\\..\\Entorno"
+		},
+		{
+			"path": ".."
+		}
+	],
+	"settings": {}
+}

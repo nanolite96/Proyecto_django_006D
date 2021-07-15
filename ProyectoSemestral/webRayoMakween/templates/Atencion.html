@@ -1,0 +1,125 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taller Mecanico Rayo Makween</title>
+    <link rel="stylesheet" href="{% static 'style/style.css' %}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+</head>
+
+<body class="fondo">
+    <header>
+        <div class="cabezon">
+            <nav>
+                <label class="img1" for="menu-bar"><img src="{% static 'Img/logomcqueen.png' %}" width="95px" height="80"></label>
+                <input type="checkbox" name="" id="menu-bar">
+                <a href="{% url 'INDEX' %}">Inicio</a>
+                <a href="{% url 'ATENCION' %}">Atencion</a>
+                <a href="{% url 'CONTACTO' %}">Formulario</a>
+                <a href="{% url 'LISTADO' %}">Lista de trabajos</a>
+                {% if user.is_authenticated %}
+                    <a href="{% url 'REGITRA' %}">Registro Atencion</a>
+                    <a href="{% url 'VALIDAR' %}">Validar Post</a>
+                    <a href="{% url 'CERRAR' %}">Cerrar Sesión</a>
+                    <a href="">Bienvenido: {{user.first_name}}</a>
+                {% else %}
+                    <a href="{% url 'REGISTRO' %}">Registro</a>
+                    <a href="{% url 'INICIO' %}">Iniciar Sesión</a>
+                {% endif %}
+            </nav>
+            <p class="buscador">
+            <form action="{% url 'TRABAJO' %}" method="POST">
+            {% csrf_token %}
+                Busqueda de Trabajo: <input type="search" name="txtTrabajo" placeholder="Trabajos...">
+                <input type="submit" value="Buscar">
+              </form>
+            </p>
+            <div class="titulo">
+                <h1>Taller Mecanico Rayo Makween </h1>
+            </div>
+        </div>
+    </header>
+    <div class="row">
+     <div class="col-12">
+         <p></p>
+     </div>
+     <div class="col-12">
+        <p></p>
+    </div>
+    <div class="col-12">
+        <p></p>
+    </div>
+    <div class="col-12">
+        <p></p>
+    </div>
+    <div class="col-12">
+        <p></p>
+    </div>
+    <div class="col-12">
+        <p></p>
+    </div>
+    <div class="col-12 Categoria" >
+        <div class="form-group">
+            <label for="cbomostrar"></label>
+            <select  name="form-group" id="cbomostrar">
+                <option value="0">
+                    Seleccione
+                </option>
+                <Option value="0">
+                    Ordenar por Mecanico
+                </Option>
+                <option value="0">
+                    Ordenar por Categoria
+                </option>
+            </select>
+        </div>
+    </div>
+    
+    
+    <div class="col-12">
+
+    
+    <section id="Galeria">
+        <div><a href="{% static 'img_galeria/1.jpg' %}"data-lightbox="Mecanico"data-title="Cambio de inyectores"><img src="{% static 'img_galeria/1.jpg' %}" height="300" width="400"></a></div>
+        <h4><a href="#">Ver Cambio de inyectores</a></h4>
+        <div><a href="{% static 'img_galeria/2.png' %}"data-lightbox="Mecanico"data-title="Cambio de Luces"><img src="{% static 'img_galeria/2.png' %}" height="300" width="400"></a></div>
+        <h4><a href="#">Ver Cambio de Luces</a></h4>
+        <div><a href="{% static 'img_galeria/3.jpg' %}"data-lightbox="Mecanico"data-title="Cambio de Bateria"><img src="{% static 'img_galeria/3.jpg' %}" height="300" width="400"></a></div>
+        <h4><a href="#">Ver Cambio de Bateria</a> </h4>
+        <div><a href="{% static 'img_galeria/4.PNG' %}"data-lightbox="Mecanico"data-title="Cambio de Embrague"><img src="{% static 'img_galeria/4.PNG' %}" height="300" width="400"></a></div>
+        <h4><a href="#">Ver Cambio de Embrague</a></h4>
+        <div><a href="{% static 'img_galeria/5.jpg' %}"data-lightbox="Mecanico"data-title="Cambio de Amortiguador"><img src="{% static 'img_galeria/5.jpg' %}" height="300" width="400"></a></div>
+        <h4><a href="#">Ver Cambio de Amortiguador</a></h4>
+        <div><a href="{% static 'img_galeria/6.jpg' %}"data-lightbox="Mecanico"data-title="Cambio de Parabrisa"><img src="{% static 'img_galeria/6.jpg' %}" height="300" width="400"></a></div>
+        <h4><a href="#">Ver Cambio de Parabrisa</a> </h4>
+        <div><a href="{% static 'img_galeria/7.jpg' %}"data-lightbox="Mecanico"data-title="Cambio de Balatas"><img src="{% static 'img_galeria/7.jpg' %}" height="300" width="400"></a></div>
+        <h4><a href="#">Ver Cambio de Balatas</a> </h4>
+        <div><a href="{% static 'img_galeria/8.jpg' %}"data-lightbox="Mecanico"data-title="Cambio de Correa de Distribucion"><img src="{% static 'img_galeria/8.jpg' %}" height="300" width="400"></a></div>
+        <h4><a href="#">Ver Cambio de Correa de Distribucion</a></h4>
+    
+    </section>
+    </div>
+    </div>
+        <footer>
+            <center><div class="contenedor">
+                <p>  Taller Mecanico Rayo Makween </p>
+    
+            </div></center>
+        </footer>
+        <script src="dist/js/lightbox-plus-jquery.min.js"></script>
+</body>
+</html>

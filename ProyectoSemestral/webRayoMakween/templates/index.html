@@ -1,0 +1,121 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taller Mecanico Rayo Makween</title>
+    <link rel="stylesheet" href="{% static 'style/style.css' %}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+</head>
+
+<body class="fondo">
+    <header>
+        <div class="cabezon">
+            <nav>
+                <label class="img1" for="menu-bar"><img src="{% static 'Img/logomcqueen.png' %}" width="95px" height="80"></label>
+                <input type="checkbox" name="" id="menu-bar">
+                <a href="{% url 'INDEX' %}">Inicio</a>
+                
+                <a href="{% url 'CONTACTO' %}">Formulario</a>
+                <a href="{% url 'LISTADO' %}">Lista de trabajos</a>
+                {% if user.is_authenticated %}
+                    <a href="{% url 'REGITRA' %}">Registro Atencion</a>
+                    <a href="{% url 'CERRAR' %}">Cerrar Sesión</a>
+                    <a href="">Bienvenido: {{user.username}}</a>
+                {% else %}
+                    <a href="{% url 'REGISTRO' %}">Registro Usuario</a>
+                    <a href="{% url 'INICIO' %}">Iniciar Sesión</a>
+                {% endif %}
+                {% csrf_token %}
+            </nav>
+            <div class="titulo">
+                <h1>Taller Mecanico Rayo Makween </h1>
+            </div>
+        </div>
+    </header>
+    <center>
+         {% for reg in trabajos %}
+        <div class="carousel slide" data-ride="carousel" data-interval=1000>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <a href="ficha/{{reg.codigo}}"><img class="d-block w-75" src="{{reg.imagen.url}}" width="500"
+                            height="500" alt="primer slide"></a>
+                    <h3 class="disco">{{reg.descripcion}}</h3>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </center>
+    <center>
+        <div class="subtitulo">
+            <h2>Bienvenido</h2>
+            <h4>Trabajos realizados el dia de hoy:{{cant}}</h4>
+        </div>
+    </center>
+    <center>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates, incidunt porro. Vero adipisci, optio
+            maxime praesentium eius alias laborum placeat cumque laboriosam, deleniti ipsam nostrum voluptatum
+            repudiandae, odit perferendis voluptas.</p>
+    </center>
+    <center>
+        <section>
+            <h1>Trabajos hechos</h1>
+            <table>
+                <tr>
+                    <td>Trabajo</td>
+                    <td>Fecha</td>
+                    <td>Nombre</td>
+                </tr>
+                {% for reg in trabajos_api %}
+                <tr>
+                    <td>{{reg.descripcion}}</td>
+                    <td>{{reg.fecha}}</td>
+                    <td>{{reg.nombre}}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </section>
+    </center>
+    <center>
+        <section>
+            <h1>Comentarios</h1>
+            <table>
+                <tr>
+                    <td>Nombre</td>
+                    <td>Asunto</td>
+                    <td>Comentario</td>
+                </tr>
+                {% for reg in contactos_api %}
+                <tr>
+                    <td>{{reg.nombre_cl}}</td>
+                    <td>{{reg.asunto}}</td>
+                    <td>{{reg.sugerencia}}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </section>
+    </center>
+    <footer>
+        <center>
+            <div class="contenedor">
+                <p> Taller Mecanico Rayo Makween </p>
+
+            </div>
+        </center>
+    </footer>
+</body>
+<script src="{static 'js/v.js'}"></script>
+</html>

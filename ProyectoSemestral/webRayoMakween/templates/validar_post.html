@@ -1,0 +1,139 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taller Mecanico Rayo Makween</title>
+    <link rel="stylesheet" href="{% static 'style/style.css' %}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+</head>
+
+<body class="fondo">
+    <header>
+        <div class="cabezon">
+            <nav>
+                <label class="img1" for="menu-bar"><img src="{% static 'Img/logomcqueen.png' %}" width="95px" height="80"></label>
+                <input type="checkbox" name="" id="menu-bar">
+                <a href="{% url 'INDEX' %}">Inicio</a>
+                
+                <a href="{% url 'CONTACTO' %}">Formulario</a>
+                <a href="{% url 'LISTADO' %}">Lista de trabajos</a>
+                {% if user.is_authenticated %}
+                    <a href="{% url 'REGITRA' %}">Registro Atencion</a>
+                    <a href="{% url 'CERRAR' %}">Cerrar Sesión</a>
+                    <a href="">Bienvenido: {{user.username}}</a>
+                {% else %}
+                    <a href="{% url 'REGISTRO' %}">Registro Usuario</a>
+                    <a href="{% url 'INICIO' %}">Iniciar Sesión</a>
+                {% endif %}
+                {% csrf_token %}
+            </nav>
+            <div class="titulo">
+                <h1>Taller Mecanico Rayo Makween </h1>
+            </div>
+        </div>
+    </header>
+    <div class="col-12">
+        <p></p>
+    </div>
+    <div class="col-12">
+        <p></p>
+    </div>
+    <div class="col-12">
+        <p></p>
+    </div>
+    <div class="col-12">
+        <p></p>
+    </div>
+    <div class="col-5">
+            <table class=" table">
+                <tr>
+                    <th>Diagnostico</th>
+                    <th>Nombre</th>
+                    <th>Fecha</th>
+                    <th>Materiales</th>
+                    <th>Descripcion</th>
+                    <th>Imagen</th>
+                    <th>Comentario</th>
+                </tr>     
+            {% for reg in trabajos %}
+                <tr>
+                    <td>
+                        {{reg.diagnostico}}
+                    </td>
+                    
+                    <td>
+                        {{reg.nombre}}
+                    </td>
+                        
+                    <td>
+                        {{reg.fecha}}
+                    </td>
+
+                    <td>
+                        {{reg.materiales}}
+                    </td>
+
+                    <td>
+                        {{reg.descripcion}}
+                    </td>
+                    <td>
+                        {% if reg.imagen %}
+                        <img src="{{reg.imagen.url}}" alt="imgnula" width="50" height="50">
+                        {% endif %}
+                    </td>
+                    <td>
+                        {{reg.comentario}}
+                    </td>
+                    <td>
+                        <button class= "btn btn-warning" onclick="modificar('{{reg.diagnostico}}')">Modificar</button>
+                    </td>
+                    <td>
+                        <button class= "btn btn-danger" onclick="eliminar('{{reg.diagnostico}}')">Rechazar</button>
+                    </td>
+                </tr>
+            {% endfor %}
+        </div>
+    </div>
+    <footer>
+        <center>
+            <div class="contenedor">
+                <p> Taller Mecanico Rayo Makween </p>
+            </div>
+        </center>
+    </footer>
+</body>
+
+{% block js %}
+    <script>
+        function buscar_modificar(diagnostico) {
+            location.href='/modificar/'+diagnostico+'/'
+        }
+        function eliminar(diagnostico) {
+            var opcion= "Seguro que quiere eliminar?";
+                if (opcion==true) {
+                    location.href='/eliminar/'+diagnostico+'/';
+                    alert("Trabajo Eliminado")
+                }else{
+                    alert("Operación cancelada")
+                    }
+                }
+            alert("Eliminar el trabajo "+diagnostico);
+    </script>
+<script src="{% static 'js/v.js' %}"></script>
+{% endblock %}
+
+</html>
